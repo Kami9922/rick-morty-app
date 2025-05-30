@@ -10,13 +10,14 @@
 		"skipLibCheck": true, // Ускоряет компиляцию (пропускает проверку типов в node_modules)
 		"forceConsistentCasingInFileNames": true, // Запрещает разный регистр в путях
 		"baseUrl": "./src", // Базовый путь для абсолютных импортов
+		"resolveJsonModule": true,
 		"paths": {
 			// Алиасы для импортов (опционально)
 			"@/*": ["./*"]
 		},
 		"allowJs": true, // Разрешает .js файлы (если мигрируете с JS)
 		"outDir": "./dist", // Куда складывать скомпилированные файлы (если нужно)
-		"noEmit": true // Не создает .js файлы (если используете Babel/Vite)
+		"noEmit": true //б Не создает .js файлы (если используете Babel/Vite)
 	},
 	"include": ["src/**/*"], // Какие файлы компилировать
 	"exclude": ["node_modules"] // Что игнорировать
