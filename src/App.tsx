@@ -1,6 +1,6 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import { CategoryPage, ElementPage } from './components'
+import { CategoryPage, ElementPage, NotFound } from './components'
 import { NavLayout } from './layout/nav-layout'
 
 export const App = () => {
@@ -11,12 +11,24 @@ export const App = () => {
 					path=''
 					element={<NavLayout />}>
 					<Route
-						path='/category-page'
-						element={<CategoryPage />}
+						path='/characters'
+						element={<CategoryPage category='characters' />}
 					/>
 					<Route
-						path='element-page'
+						path='/locations'
+						element={<CategoryPage category='locations' />}
+					/>
+					<Route
+						path='/episodes'
+						element={<CategoryPage category='episodes' />}
+					/>
+					<Route
+						path='/:category/:id'
 						element={<ElementPage />}
+					/>
+					<Route
+						path='*'
+						element={<NotFound />}
 					/>
 				</Route>
 			</Routes>
