@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import charactersData from '../../db/characters.json'
-import episodesData from '../../db/episodes.json'
-import locationsData from '../../db/locations.json'
+import charactersData from '../../../db/characters.json'
+import episodesData from '../../../db/episodes.json'
+import locationsData from '../../../db/locations.json'
 
 export const CategoryPage = ({ category }: { category: string }) => {
 	return (

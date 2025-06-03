@@ -1,6 +1,6 @@
-import charactersData from '../../db/characters.json'
-import episodesData from '../../db/episodes.json'
-import locationsData from '../../db/locations.json'
+import charactersData from '../../../db/characters.json'
+import episodesData from '../../../db/episodes.json'
+import locationsData from '../../../db/locations.json'
 import { useParams } from 'react-router-dom'
 interface Character {
 	id: number

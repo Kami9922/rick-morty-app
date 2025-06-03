@@ -1,3 +1,3 @@
-export * from './category-page/category-page'
-export * from './element-page/element-page'
+export * from './pages/category/category'
+export * from './pages/element/element'
 export * from './not-found/not-found'
