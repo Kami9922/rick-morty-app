@@ -1,10 +1,9 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import { Category, Element, NotFound } from './components'
+import { Category, Element, NotFound, PrivateRoute } from './components'
 import { NavLayout } from './layout/nav-layout'
 import { AuthProvider } from './context/auth-provider/auth-provider'
 import { Login } from './components/pages/login/login'
-import { PrivateRoute } from './components/private-route/private-route'
 
 export const App = () => {
 	return (

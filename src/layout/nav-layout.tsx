@@ -1,4 +1,4 @@
-import { AuthStatus } from '../components/auth-status/auth-status'
+import { AuthStatus } from '../components'
 import { Header } from '../ui/header/header'
 import { Outlet } from 'react-router-dom'
 
