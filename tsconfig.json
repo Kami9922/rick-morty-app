@@ -6,11 +6,12 @@
 		"jsx": "react-jsx", // Для поддержки JSX (в React 17+)
 		"strict": true, // Включает все strict-проверки (рекомендуется)
 		"moduleResolution": "node", // Как искать модули (как в Node.js)
+		"resolveJsonModule": true,
 		"esModuleInterop": true, // Улучшает совместимость с CommonJS
 		"skipLibCheck": true, // Ускоряет компиляцию (пропускает проверку типов в node_modules)
 		"forceConsistentCasingInFileNames": true, // Запрещает разный регистр в путях
 		"baseUrl": "./src", // Базовый путь для абсолютных импортов
-		"resolveJsonModule": true,
+		"allowSyntheticDefaultImports": true,
 		"paths": {
 			// Алиасы для импортов (опционально)
 			"@/*": ["./*"]

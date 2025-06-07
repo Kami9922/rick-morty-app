@@ -3,7 +3,7 @@ import charactersData from '../../../db/characters.json'
 import episodesData from '../../../db/episodes.json'
 import locationsData from '../../../db/locations.json'
 
-export const CategoryPage = ({ category }: { category: string }) => {
+export const Category = ({ category }: { category: string }) => {
 	return (
 		<>
 			<h1>{category.charAt(0).toUpperCase() + category.slice(1)}</h1>

@@ -26,7 +26,7 @@ interface Location {
 	dimension: string
 }
 
-export const ElementPage = () => {
+export const Element = () => {
 	const { category, id } = useParams<{ category?: string; id?: string }>()
 
 	const elementId = id ? parseInt(id, 10) : null
