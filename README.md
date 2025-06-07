@@ -4,7 +4,8 @@ It has:
 
 - Route system
 - Nav Panel that always on display and allows user navigate through pages any time
-- Category Page that defines witch category user chose and allows navigate to interesting
+- Category page that defines witch category user chose and allows navigate to interesting
   element
-- Element Page that contains info about chosen element
+- Element page that contains info about chosen element
+- Login page that allows user sign in and read app's content
 - All data of categories and elements is taken from json files from db folder
