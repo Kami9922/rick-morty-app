@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { AuthStatus } from '../components'
 import { Header } from '../ui/header/header'
 import { Outlet } from 'react-router-dom'
@@ -7,7 +8,9 @@ export const NavLayout = () => {
 		<>
 			<AuthStatus />
 			<Header />
-			<Outlet />
+			<Suspense fallback={<div>Loading...</div>}>
+				<Outlet />
+			</Suspense>
 		</>
 	)
 }

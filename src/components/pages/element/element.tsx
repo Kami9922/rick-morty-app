@@ -1,80 +1,60 @@
-import charactersData from '../../../db/characters.json'
-import episodesData from '../../../db/episodes.json'
-import locationsData from '../../../db/locations.json'
 import { useParams } from 'react-router-dom'
-interface Character {
-	id: number
-	name: string
-	status: string
-	species: string
-	type: string
-	gender: string
-	image: string
-}
+import { useSearchElements } from '../../../hooks/useSearchElements'
 
-interface Episode {
-	id: number
-	name: string
-	air_date: string
-	episode: string
-}
+export const Element = ({
+	pageNumber,
+	setPageNumber,
+}: {
+	pageNumber: number
+	setPageNumber: React.Dispatch<React.SetStateAction<number>>
+}) => {
+	const { category, id } = useParams<{
+		category?: 'character' | 'episode' | 'location'
+		id?: string
+	}>()
 
-interface Location {
-	id: number
-	name: string
-	type: string
-	dimension: string
-}
-
-export const Element = () => {
-	const { category, id } = useParams<{ category?: string; id?: string }>()
+	const { elements } = useSearchElements(pageNumber, setPageNumber, category)
 
 	const elementId = id ? parseInt(id, 10) : null
+	const element =
+		elementId !== null ? elements.find((item) => item.id === elementId) : null
 
-	const character =
-		elementId !== null && category === 'characters'
-			? charactersData.find((element: Character) => element.id === elementId)
-			: null
-	const episode =
-		elementId !== null && category === 'episodes'
-			? episodesData.find((element: Episode) => element.id === elementId)
-			: null
-	const location =
-		elementId !== null && category === 'locations'
-			? locationsData.find((element: Location) => element.id === elementId)
-			: null
+	if (!element || !category) {
+		return <div>Element not found</div>
+	}
 
-	return (
-		<div>
-			<div>
-				{category === 'characters' && character ? (
-					<ul>
-						<li className='title-name'>{character.name}</li>
-						<img
-							src={character.image}
-							alt={character.name}
-						/>
-						<li>Status: {character.status}</li>
-						<li>Species: {character.species}</li>
-						{character.type && <li>{character.type}</li>}
-						<li>Gender: {character.gender}</li>
-					</ul>
-				) : category === 'episodes' && episode ? (
-					<ul>
-						<li className='title-name'>{episode.name}</li>
-						<li>Air Date: {episode.air_date}</li>
-						<li>Episode: {episode.episode}</li>
-					</ul>
-				) : category === 'locations' && location ? (
-					<ul>
-						<li className='title-name'>{location.name}</li>
-						<li>Type: {location.type}</li>
-						<li>Dimension: {location.dimension}</li>
-					</ul>
-				) : (
-					<li>Element not found</li>
-				)}
-			</div>
-		</div>
-	)
+	switch (element.kind) {
+		case 'character':
+			return (
+				<ul>
+					<li className='title-name'>{element.name}</li>
+					<img
+						src={element.image}
+						alt={element.name}
+					/>
+					<li>Status: {element.status}</li>
+					<li>Species: {element.species}</li>
+					{element.type && <li>Type: {element.type}</li>}
+					<li>Gender: {element.gender}</li>
+				</ul>
+			)
+		case 'episode':
+			return (
+				<ul>
+					<li className='title-name'>{element.name}</li>
+					<li>Air Date: {element.air_date}</li>
+					<li>Episode: {element.episode}</li>
+				</ul>
+			)
+		case 'location':
+			return (
+				<ul>
+					<li className='title-name'>{element.name}</li>
+					<li>Type: {element.type}</li>
+					<li>Dimension: {element.dimension}</li>
+				</ul>
+			)
+		default:
+			return <div>Element not found</div>
+	}
 }

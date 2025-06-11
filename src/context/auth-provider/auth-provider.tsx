@@ -1,14 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
-
-interface AuthContextType {
-	user: string | null
-	signin: (newUser: string, callback: () => void) => void
-	signout: (callback: () => void) => void
-}
-
-interface AuthProviderProps {
-	children: ReactNode
-}
+import { AuthContextType, AuthProviderProps } from '../../types/types'
+import { createContext, useContext, useState } from 'react'
 
 const AuthContext = createContext<AuthContextType | null>(null)
 

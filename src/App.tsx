@@ -1,11 +1,26 @@
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
-import { Category, Element, NotFound, PrivateRoute } from './components'
+import { PrivateRoute } from './components'
 import { NavLayout } from './layout/nav-layout'
 import { AuthProvider } from './context/auth-provider/auth-provider'
-import { Login } from './components/pages/login/login'
+import { lazy, useState } from 'react'
+import { ErrorBoundary } from './components/error-boundary/error-boundary'
+
+const Category = lazy(() =>
+	import('./components').then((module) => ({ default: module.Category }))
+)
+const Element = lazy(() =>
+	import('./components').then((module) => ({ default: module.Element }))
+)
+const NotFound = lazy(() =>
+	import('./components').then((module) => ({ default: module.NotFound }))
+)
+const Login = lazy(() =>
+	import('./components').then((module) => ({ default: module.Login }))
+)
 
 export const App = () => {
+	const [pageNumber, setPageNumber] = useState(1)
 	return (
 		<div className='App'>
 			<AuthProvider>
@@ -16,35 +31,58 @@ export const App = () => {
 						<Route
 							path='/characters'
 							element={
-								<PrivateRoute>
-									<Category category='characters' />
-								</PrivateRoute>
+								<ErrorBoundary>
+									<PrivateRoute>
+										<Category
+											pageNumber={pageNumber}
+											setPageNumber={setPageNumber}
+											category='character'
+										/>
+									</PrivateRoute>
+								</ErrorBoundary>
 							}
 						/>
 						<Route />
 						<Route
 							path='/locations'
 							element={
-								<PrivateRoute>
-									<Category category='locations' />
-								</PrivateRoute>
+								<ErrorBoundary>
+									<PrivateRoute>
+										<Category
+											pageNumber={pageNumber}
+											setPageNumber={setPageNumber}
+											category='location'
+										/>
+									</PrivateRoute>
+								</ErrorBoundary>
 							}
 						/>
 						<Route
 							path='/episodes'
 							element={
-								<PrivateRoute>
-									<Category category='episodes' />
-								</PrivateRoute>
+								<ErrorBoundary>
+									<PrivateRoute>
+										<Category
+											pageNumber={pageNumber}
+											setPageNumber={setPageNumber}
+											category='episode'
+										/>
+									</PrivateRoute>
+								</ErrorBoundary>
 							}
 						/>
 						<Route />
 						<Route
 							path='/:category/:id'
 							element={
-								<PrivateRoute>
-									<Element />
-								</PrivateRoute>
+								<ErrorBoundary>
+									<PrivateRoute>
+										<Element
+											pageNumber={pageNumber}
+											setPageNumber={setPageNumber}
+										/>
+									</PrivateRoute>
+								</ErrorBoundary>
 							}
 						/>
 					</Route>
