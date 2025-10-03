@@ -3,7 +3,7 @@ services:
     build: .
     image: kami92/rick-morty-app
     ports:
-      - '80:80'
+      - '3020:80'
       - '443:443'
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
