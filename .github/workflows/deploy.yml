@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /rick-morty-app
+            cd /root/rick-morty-app
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/rick-morty-app:latest
             docker compose down
             docker compose up -d
