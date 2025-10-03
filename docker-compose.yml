@@ -1,11 +1,7 @@
 services:
   rick-morty-app:
+    build: .
     image: kami92/rick-morty-app:latest
-    ports:
-      - '3020:80'
-
-  nginx:
-    image: nginx:alpine
     ports:
       - '80:80'
       - '443:443'
@@ -14,7 +10,7 @@ services:
       - ./certbot/www:/var/www/certbot
       - ./certbot/data:/etc/letsencrypt
     depends_on:
-      - rick-morty-app
+      - certbot
 
   certbot:
     image: certbot/certbot
